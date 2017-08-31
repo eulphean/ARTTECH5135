@@ -7,6 +7,13 @@ float centerX, centerY;
 int squareLength = 300;
 int squarePixelOffset = 5;
 
+// 0, 1 [top left, top right]
+// 2, 3 [bottom left, bottom right]
+vector<ofPoint> trapeziumVertice;
+float horizontalBottomOffset = 350;
+float horizontalTopOffset = 175;
+float verticalOffset = 350;
+
 //--------------------------------------------------------------
 void ofApp::setup(){
   // Set background color.
@@ -42,8 +49,46 @@ void drawCenterSquare() {
   ofDrawRectangle(squareOriginX, squareOriginY, squareLength, squareLength);
 }
 
+void drawTrapezium() {
+  // Bottom vertices.
+  ofPoint bottomLeft(centerX - horizontalBottomOffset, centerY + verticalOffset);
+  ofPoint bottomRight(centerX + horizontalBottomOffset, centerY + verticalOffset);
+  
+  // [0], [1]
+  trapeziumVertice.push_back(bottomLeft);
+  trapeziumVertice.push_back(bottomRight);
+  
+  // Top Vertices.
+  ofPoint topLeft(centerX - horizontalTopOffset, centerY - verticalOffset);
+  ofPoint topRight(centerX + horizontalTopOffset, centerY - verticalOffset);
+  
+  // [2], [3]
+  trapeziumVertice.push_back(topLeft);
+  trapeziumVertice.push_back(topRight);
+  
+  // Start drawing the trapezium.
+  
+  ofSetColor(ofColor::ghostWhite);
+  ofFill();
+  // Horizontal bottom.
+  ofDrawLine(trapeziumVertice[0], trapeziumVertice[1]);
+  
+  // Horizontal top.
+  ofDrawLine(trapeziumVertice[2], trapeziumVertice[3]);
+  
+  // Bottom left to top left.
+  ofDrawLine(trapeziumVertice[0], trapeziumVertice[2]);
+  
+  // Bottom right to top right.
+  ofDrawLine(trapeziumVertice[3], trapeziumVertice[1]);
+}
+
 //--------------------------------------------------------------
 void ofApp::draw(){
+  // Draw the trapezium.
+  drawTrapezium();
+  // Draw lines inside the trapezium.
+  // Draw the center square.
   drawCenterSquare();
 }
 
