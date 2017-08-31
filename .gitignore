@@ -34,6 +34,7 @@ tgnore generated binaries
 # XCode 4
 xcuserdata
 *.xcworkspace
+*.xcuserstate
 
 # Code::Blocks
 *.depend
