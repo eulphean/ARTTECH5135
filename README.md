@@ -1,2 +1,2 @@
 # ARTTECH5135
-This contains the work for all the
+All the projects for ARTTECH5135 class. 
