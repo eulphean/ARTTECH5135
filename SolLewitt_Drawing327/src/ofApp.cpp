@@ -1,3 +1,6 @@
+// Author: Amay Kataria
+// Date: 09/01/2017
+
 #include "ofApp.h"
 
 // Center of the app.
