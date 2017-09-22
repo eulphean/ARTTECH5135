@@ -26,10 +26,10 @@ void ofApp::drawCircleAndLines(int curDepth) {
     return;
   }
   
-  // Increment the current depth for the subsequent recursive call.
+  // Increment current depth for the subsequent recursive calls.
   curDepth = curDepth + 1;
   
-  // Draw circle at the translated center coordinated.
+  // Draw circle at the translated center coordinates.
   ofFill();
   ofSetColor(ofColor::orange);
   ofDrawCircle(0, 0, circleRadius);
@@ -45,7 +45,7 @@ void ofApp::drawCircleAndLines(int curDepth) {
   }
 }
 
-// Draws the core structure at (x, y)
+// Draws the core structure at (x, y).
 void ofApp::drawStructure(float x, float y, int curDepth) {
   if (curDepth < maxDepth) {
     ofPushMatrix();
@@ -57,6 +57,6 @@ void ofApp::drawStructure(float x, float y, int curDepth) {
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  // Pass curDepth = 0 to let ofDraw loop draw this structure infinitely.
+  // Pass curDepth = 0 to let Draw loop create this structure infinitely.
   drawStructure(ofGetWidth() / 2, ofGetHeight() / 2, 0);
 }
