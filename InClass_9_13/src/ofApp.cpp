@@ -1,74 +1,35 @@
 #include "ofApp.h"
 
-ofPoint center;
+using namespace std;
 
-// Offset between multiple lines.
 //--------------------------------------------------------------
 void ofApp::setup(){
-  ofSetFrameRate(1);
+  
+  // Uses of modulo operator.
+  
+  // If it's a multiple of a number
+  for (int i = 0; i < 10; i ++) {
+    if ((i % 2) == 0) {
+      cout << i << " is even." << endl;
+    } else {
+      cout << i << " is odd." << endl;
+    }
+  }
+  
+  // To keep the output in range.
+  for (int i = 0; i < 100; i ++) {
+    cout << i << " -> " << (i % 15) << endl;
+  }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  center.x = ofGetWidth()/2;
-  center.y = ofGetHeight()/2;
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  int maxY = ofGetHeight();
-  int maxX = ofGetWidth();
-  
-  // Initialize conditions.
-  int x = 0;
-  int y = 0;
-  
-//  // First half.
-//  while (x <= maxX && y <= maxX) {
-//    ofPoint from(0, y);
-//    ofPoint to(x, 0);
-//    
-//    ofSetColor(ofColor::black);
-//    ofDrawLine(from, to);
-//    
-//    // Increment the offset.
-//    x += offset;
-//    y += offset;
-//    offset = offset * 2;
-//  }
-  
-  // Second half
-//
-//  // Reset x counter
-//  x = 0;
-//  
-  // New 'To' points
-  int i = 0, j = maxY;
-  
-  while (x <= maxX * 2) {
-    ofPoint from (x, maxY);
-    ofPoint to(i, j);
-    
-    ofDrawLine(from, to);
-    
-    // Caculate new offsets.
-    x += offset;
-    i += offset/2;
-    j -= offset/2;
-  }
-  
-  int offset = 20;
-  
-  for (int x = 0; x <= maxX; ) {
-    ofPoint from (x, 0);
-    ofPoint to(0, x);
-    
-    ofDrawLine(from, to);
-    
-    x = x + offset;
-    offset = offset * 2;
-  }
-  
+
 }
 
 //--------------------------------------------------------------

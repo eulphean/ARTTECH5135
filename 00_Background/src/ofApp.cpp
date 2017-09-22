@@ -1,73 +1,45 @@
 #include "ofApp.h"
 
-ofPoint center;
-
-// Offset between multiple lines.
 //--------------------------------------------------------------
 void ofApp::setup(){
-  ofSetFrameRate(1);
+  ofBackground(ofColor::white);
+  ofSetBackgroundAuto(false);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  center.x = ofGetWidth()/2;
-  center.y = ofGetHeight()/2;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  int maxY = ofGetHeight();
-  int maxX = ofGetWidth();
+
+  // Trailing effect when you are moving your mouse.
+  ofSetColor(ofColor::white, 10);
+  ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
   
-  // Initialize conditions.
-  int x = 0;
-  int y = 0;
+  // Brush begins here.
   
-//  // First half.
-//  while (x <= maxX && y <= maxX) {
-//    ofPoint from(0, y);
-//    ofPoint to(x, 0);
-//    
-//    ofSetColor(ofColor::black);
-//    ofDrawLine(from, to);
-//    
-//    // Increment the offset.
-//    x += offset;
-//    y += offset;
-//    offset = offset * 2;
-//  }
+  int opacity = 40;
   
-  // Second half
-//
-//  // Reset x counter
-//  x = 0;
-//  
-  // New 'To' points
-  int i = 0, j = maxY;
+  // Current mouse position in the space.
+  ofPoint curMouse (ofGetMouseX(), ofGetMouseY());
   
-  while (x <= maxX * 2) {
-    ofPoint from (x, maxY);
-    ofPoint to(i, j);
-    
-    ofDrawLine(from, to);
-    
-    // Caculate new offsets.
-    x += offset;
-    i += offset/2;
-    j -= offset/2;
-  }
+  float offset = 10.0f;
+  float radius = ofMap(curMouse.x, 0, ofGetWidth(), 30, 80);
   
-  int offset = 20;
+  ofSetColor(ofColor::red, opacity);
+  ofDrawCircle(curMouse.x - offset, curMouse.y - offset, radius);
   
-  for (int x = 0; x <= maxX; ) {
-    ofPoint from (x, 0);
-    ofPoint to(0, x);
-    
-    ofDrawLine(from, to);
-    
-    x = x + offset;
-    offset = offset * 2;
-  }
+  ofSetColor(ofColor::green, opacity);
+  ofDrawCircle(curMouse.x - offset, curMouse.y + offset, radius);
+  
+  ofSetColor(ofColor::yellow, opacity);
+  ofDrawCircle(curMouse.x + offset, curMouse.y - offset, radius);
+  
+  ofSetColor(ofColor::blue, opacity);
+  ofDrawCircle(curMouse.x + offset, curMouse.y + offset, radius);
+  
+  // Brush ends here.
   
 }
 

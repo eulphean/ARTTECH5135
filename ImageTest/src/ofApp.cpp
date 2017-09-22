@@ -1,74 +1,40 @@
 #include "ofApp.h"
 
-ofPoint center;
-
-// Offset between multiple lines.
 //--------------------------------------------------------------
 void ofApp::setup(){
-  ofSetFrameRate(1);
+  image0.load("flow.png");
+  image1.load("prussik.jpg");
+  
+  ofSetBackgroundAuto(false);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  center.x = ofGetWidth()/2;
-  center.y = ofGetHeight()/2;
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  int maxY = ofGetHeight();
-  int maxX = ofGetWidth();
-  
-  // Initialize conditions.
-  int x = 0;
-  int y = 0;
-  
-//  // First half.
-//  while (x <= maxX && y <= maxX) {
-//    ofPoint from(0, y);
-//    ofPoint to(x, 0);
-//    
-//    ofSetColor(ofColor::black);
-//    ofDrawLine(from, to);
-//    
-//    // Increment the offset.
-//    x += offset;
-//    y += offset;
-//    offset = offset * 2;
-//  }
-  
-  // Second half
-//
-//  // Reset x counter
-//  x = 0;
+    ofSetColor(0, 10);
+    ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
 //  
-  // New 'To' points
-  int i = 0, j = maxY;
+  // Sets the tint of the color.
+  // ofSetColor(ofColor::green);
+  // image0.draw(0, 0, ofGetWidth(), ofGetHeight());
+  // image1.draw(ofGetMouseX(), ofGetMouseY(), 100, 100);
   
-  while (x <= maxX * 2) {
-    ofPoint from (x, maxY);
-    ofPoint to(i, j);
+  //ofEnableBlendMode(OF_BLENDMODE_ADD);
+  
+  for (int i = 0; i < 50; i++) {
+    // Rainbow hue.
+    float hue = ofRandom(0, 255);
+    ofSetColor(ofColor::fromHsb(hue, 255, 255));
     
-    ofDrawLine(from, to);
+    float x = ofRandom(0, ofGetWidth());
+    float y = ofRandom(0, ofGetHeight());
     
-    // Caculate new offsets.
-    x += offset;
-    i += offset/2;
-    j -= offset/2;
+    image1.draw(x, y, 100, 100);
   }
-  
-  int offset = 20;
-  
-  for (int x = 0; x <= maxX; ) {
-    ofPoint from (x, 0);
-    ofPoint to(0, x);
-    
-    ofDrawLine(from, to);
-    
-    x = x + offset;
-    offset = offset * 2;
-  }
-  
 }
 
 //--------------------------------------------------------------
@@ -93,7 +59,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+  image0.draw(x, y);
 }
 
 //--------------------------------------------------------------

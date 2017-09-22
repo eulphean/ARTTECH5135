@@ -1,74 +1,37 @@
 #include "ofApp.h"
 
-ofPoint center;
-
-// Offset between multiple lines.
 //--------------------------------------------------------------
 void ofApp::setup(){
-  ofSetFrameRate(1);
+  ofBackground(0);
+  // This makes sure that the background doesn't update with every frame.
+  // This lets our drawing sit on the canvas till we come back to our next frame.
+  ofSetBackgroundAuto(false);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  center.x = ofGetWidth()/2;
-  center.y = ofGetHeight()/2;
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  int maxY = ofGetHeight();
-  int maxX = ofGetWidth();
+  ofSetColor(0, 10);
+  ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
   
-  // Initialize conditions.
-  int x = 0;
-  int y = 0;
-  
-//  // First half.
-//  while (x <= maxX && y <= maxX) {
-//    ofPoint from(0, y);
-//    ofPoint to(x, 0);
-//    
-//    ofSetColor(ofColor::black);
-//    ofDrawLine(from, to);
-//    
-//    // Increment the offset.
-//    x += offset;
-//    y += offset;
-//    offset = offset * 2;
-//  }
-  
-  // Second half
-//
-//  // Reset x counter
-//  x = 0;
-//  
-  // New 'To' points
-  int i = 0, j = maxY;
-  
-  while (x <= maxX * 2) {
-    ofPoint from (x, maxY);
-    ofPoint to(i, j);
+  for (int i = 0; i < 10; i ++) {
+    float offsetX = ofRandom(-20, 20);
+    float offsetY = ofRandom(-20, 20);
     
-    ofDrawLine(from, to);
+    float x = ofGetMouseX() + offsetX;
+    float y = ofGetMouseY() + offsetY;
     
-    // Caculate new offsets.
-    x += offset;
-    i += offset/2;
-    j -= offset/2;
+    float radius = ofRandom(3, 30);
+    
+    float grayscale = ofRandom(0, 255);
+    
+    ofSetColor(grayscale);
+    ofDrawCircle(x, y, radius);
   }
-  
-  int offset = 20;
-  
-  for (int x = 0; x <= maxX; ) {
-    ofPoint from (x, 0);
-    ofPoint to(0, x);
-    
-    ofDrawLine(from, to);
-    
-    x = x + offset;
-    offset = offset * 2;
-  }
-  
 }
 
 //--------------------------------------------------------------
