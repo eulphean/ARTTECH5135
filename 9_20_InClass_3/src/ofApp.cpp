@@ -6,11 +6,8 @@
 
 int theta = 30;
 int lineLength = 100;
-int maxDepth = 2;
-int circleRadius = 10;
-
-// ofNoise => Periodic signals example.
-// Look at the examples from this week for starting thus.
+int maxDepth = 4;
+int circleRadius = 20;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -24,15 +21,17 @@ void ofApp::update(){
 }
 
 void ofApp::drawCircleAndLines(int curDepth) {
+  // Base condition for recursion.
   if (curDepth > maxDepth) {
     return;
   }
   
+  // Increment the current depth for the subsequent recursive call.
   curDepth = curDepth + 1;
   
-  // Draw circle in the center.
-  ofNoFill();
-  ofSetColor(ofColor::green);
+  // Draw circle at the translated center coordinated.
+  ofFill();
+  ofSetColor(ofColor::orange);
   ofDrawCircle(0, 0, circleRadius);
   
   // Draw inner lines.
@@ -46,6 +45,7 @@ void ofApp::drawCircleAndLines(int curDepth) {
   }
 }
 
+// Draws the core structure at (x, y)
 void ofApp::drawStructure(float x, float y, int curDepth) {
   if (curDepth < maxDepth) {
     ofPushMatrix();
@@ -57,5 +57,6 @@ void ofApp::drawStructure(float x, float y, int curDepth) {
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+  // Pass curDepth = 0 to let ofDraw loop draw this structure infinitely.
   drawStructure(ofGetWidth() / 2, ofGetHeight() / 2, 0);
 }
