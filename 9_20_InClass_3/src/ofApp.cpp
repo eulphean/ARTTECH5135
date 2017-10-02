@@ -2,16 +2,18 @@
 //  Date: 09/20/2017
 //  Description: Generative recursive art.
 
+// Extend this program to read these inputs from Touch Osc. Map these paramters to the right slider values.
+
 #include "ofApp.h"
 
-int theta = 30;
-int lineLength = 100;
-int maxDepth = 4;
+int theta = 60;
+int lineLength = 60;
+int maxDepth = 3;
 int circleRadius = 20;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-  ofSetBackgroundColor(ofColor::black);
+  ofSetBackgroundColor(ofColor::white);
   ofSetCircleResolution(100);
 }
 
@@ -31,14 +33,15 @@ void ofApp::drawCircleAndLines(int curDepth) {
   
   // Draw circle at the translated center coordinates.
   ofFill();
-  ofSetColor(ofColor::orange);
+  ofSetColor(ofColor::black);
   ofDrawCircle(0, 0, circleRadius);
   
   // Draw inner lines.
   for (int i = 0; i < 360; i = i + theta) {
     ofPushMatrix();
       ofRotateZ(i);
-      ofSetColor(ofColor::aqua);
+      ofSetColor(153, 153, 153);
+      ofSetLineWidth(2.0f);
       ofDrawLine(0, 0, lineLength, lineLength);
       drawStructure(lineLength, lineLength, curDepth);
     ofPopMatrix();
